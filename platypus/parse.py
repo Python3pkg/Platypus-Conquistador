@@ -5,8 +5,8 @@
 #
 # The full license is in the file COPYING.txt, distributed with this software.
 # ----------------------------------------------------------------------------
-from __future__ import division
-from itertools import product, izip
+
+from itertools import product
 from collections import namedtuple
 from copy import copy
 from os.path import join
@@ -238,7 +238,7 @@ def process_results(percentage_ids, alignment_lengths, percentage_ids_other,
     iter_a = product(percentage_ids, alignment_lengths)
     iter_b = product(percentage_ids_other, alignment_lengths_other)
 
-    for (perc_id_a, aln_len_a), (perc_id_b, aln_len_b) in izip(iter_a, iter_b):
+    for (perc_id_a, aln_len_a), (perc_id_b, aln_len_b) in zip(iter_a, iter_b):
         # basic filename for each combination of options
         fn = "p1_%d-a1_%d_p2_%d-a2_%d" % (perc_id_a, aln_len_a,
                                           perc_id_b, aln_len_b)
@@ -263,7 +263,7 @@ def process_results(percentage_ids, alignment_lengths, percentage_ids_other,
             tmp['db_seqs_counts']['b'] = open(hits_to_second_fn, 'w')
         results.append(tmp)
 
-    for seq_name, values in best_hits.items():
+    for seq_name, values in list(best_hits.items()):
         seq_name = seq_name.split(' ')[0].strip()
         for i, vals in enumerate(values):
             if not vals:

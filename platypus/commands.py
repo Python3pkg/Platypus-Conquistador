@@ -5,7 +5,7 @@
 #
 # The full license is in the file COPYING.txt, distributed with this software.
 # ----------------------------------------------------------------------------
-from __future__ import division
+
 
 from os.path import join, basename
 
@@ -170,7 +170,7 @@ def split_db(tax_fp, seqs_fp, query, output_fp, split_fp):
         try:
             interest_taxonomy = sequences_from_query(open(tax_fp, 'U'),
                                                      query)
-        except (PlatypusValueError, PlatypusParseError), e:
+        except (PlatypusValueError, PlatypusParseError) as e:
             raise BadParameter(e.message)
 
         if len(interest_taxonomy) == 0:
